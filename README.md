@@ -1,10 +1,10 @@
-Kafka-node
+kafka-node-slim
 ==========
 
-[![NPM](https://nodei.co/npm/kafka-node.png)](https://nodei.co/npm/kafka-node/)
-[![NPM](https://nodei.co/npm-dl/kafka-node.png?height=3)](https://nodei.co/npm/kafka-node/)
+[![NPM](https://nodei.co/npm/kafka-node-slim.png)](https://nodei.co/npm/kafka-node-slim/)
+[![NPM](https://nodei.co/npm-dl/kafka-node-slim.png?height=3)](https://nodei.co/npm/kafka-node-slim/)
 
-Kafka-node is a Node.js client with Zookeeper integration for Apache Kafka 0.8.1 and later.
+kafka-node-slim is a Node.js client with Zookeeper integration for Apache Kafka 0.8.1 and later. It's a direct fork from [kafka-node](https://github.com/SOHU-Co/kafka-node), but with removed snappy compression.
 
 The Zookeeper integration does the following jobs:
 
@@ -18,7 +18,7 @@ Follow the [instructions](http://kafka.apache.org/documentation.html#quickstart)
 ## Client
 ### Client(connectionString, clientId, [zkOptions])
 * `connectionString`: Zookeeper connection string, default `localhost:2181/`
-* `clientId`: This is a user-supplied identifier for the client application, default `kafka-node-client`
+* `clientId`: This is a user-supplied identifier for the client application, default `kafka-node-slim-client`
 * `zkOptions`: **Object**, Zookeeper options, see [node-zookeeper-client](https://github.com/alexguan/node-zookeeper-client#client-createclientconnectionstring-options)
 
 ### close(cb)
@@ -32,7 +32,7 @@ Closes the connection to Zookeeper and the brokers so that the node process can 
 * `options`: set `requireAcks` and `ackTimeoutMs` for producer, the default value is `{requireAcks: 1, ackTimeoutMs: 100}`
 
 ``` js
-var kafka = require('kafka-node'),
+var kafka = require('kafka-node-slim'),
     Producer = kafka.Producer,
     client = new kafka.Client(),
     producer = new Producer(client);
@@ -66,7 +66,7 @@ var kafka = require('kafka-node'),
 Example:
 
 ``` js
-var kafka = require('kafka-node'),
+var kafka = require('kafka-node-slim'),
     Producer = kafka.Producer,
     KeyedMessage = kafka.KeyedMessage,
     client = new kafka.Client(),
@@ -95,7 +95,7 @@ This method is used to create topics on the Kafka server. It only works when `au
 Example:
 
 ``` js
-var kafka = require('kafka-node'),
+var kafka = require('kafka-node-slim'),
     Producer = kafka.Producer,
     client = new kafka.Client(),
     producer = new Producer(client);
@@ -115,7 +115,7 @@ producer.createTopics(['t'], function (err, data) {});// Simply omit 2nd arg
 * `options`: set `requireAcks` and `ackTimeoutMs` for producer, the default value is `{requireAcks: 1, ackTimeoutMs: 100}`
 
 ``` js
-var kafka = require('kafka-node'),
+var kafka = require('kafka-node-slim'),
     HighLevelProducer = kafka.HighLevelProducer,
     client = new kafka.Client(),
     producer = new HighLevelProducer(client);
@@ -142,7 +142,7 @@ var kafka = require('kafka-node'),
 Example:
 
 ``` js
-var kafka = require('kafka-node'),
+var kafka = require('kafka-node-slim'),
     HighLevelProducer = kafka.HighLevelProducer,
     client = new kafka.Client(),
     producer = new HighLevelProducer(client),
@@ -167,7 +167,7 @@ This method is used to create topics on the Kafka server. It only work when `aut
 Example:
 
 ``` js
-var kafka = require('kafka-node'),
+var kafka = require('kafka-node-slim'),
     HighLevelProducer = kafka.HighLevelProducer,
     client = new kafka.Client(),
     producer = new HighLevelProducer(client);
@@ -196,7 +196,7 @@ producer.createTopics(['t'], function (err, data) {});// Simply omit 2nd arg
 
 ```js
 {
-    groupId: 'kafka-node-group',//consumer group id, deafult `kafka-node-group`
+    groupId: 'kafka-node-slim-group',//consumer group id, deafult `kafka-node-slim-group`
     // Auto commit config
     autoCommit: true,
     autoCommitIntervalMs: 5000,
@@ -215,7 +215,7 @@ producer.createTopics(['t'], function (err, data) {});// Simply omit 2nd arg
 Example:
 
 ``` js
-var kafka = require('kafka-node'),
+var kafka = require('kafka-node-slim'),
     Consumer = kafka.Consumer,
     client = new kafka.Client(),
     consumer = new Consumer(
@@ -355,7 +355,7 @@ consumer.close(cb); //force is disabled
 
 ```js
 {
-    groupId: 'kafka-node-group',//consumer group id, deafult `kafka-node-group`
+    groupId: 'kafka-node-slim-group',//consumer group id, deafult `kafka-node-slim-group`
     // Auto commit config
     autoCommit: true,
     autoCommitIntervalMs: 5000,
@@ -374,7 +374,7 @@ consumer.close(cb); //force is disabled
 Example:
 
 ``` js
-var kafka = require('kafka-node'),
+var kafka = require('kafka-node-slim'),
     HighLevelConsumer = kafka.HighLevelConsumer,
     client = new kafka.Client(),
     consumer = new HighLevelConsumer(
@@ -508,7 +508,7 @@ Fetch the available offset of a specify topic-partition
 Example
 
 ```js
-var kafka = require('kafka-node'),
+var kafka = require('kafka-node-slim'),
     client = new kafka.Client(),
     offset = new kafka.Offset(client);
     offset.fetch([
@@ -535,7 +535,7 @@ var kafka = require('kafka-node'),
 Example
 
 ```js
-var kafka = require('kafka-node'),
+var kafka = require('kafka-node-slim'),
     client = new kafka.Client(),
     offset = new kafka.Offset(client);
     offset.commit('groupId', [
@@ -560,7 +560,7 @@ Fetch the last committed offset in a topic of a specific consumer group
 Example
 
 ```js
-var kafka = require('kafka-node'),
+var kafka = require('kafka-node-slim'),
     client = new kafka.Client(),
     offset = new kafka.Offset(client);
     offset.fetchCommits('groupId', [
